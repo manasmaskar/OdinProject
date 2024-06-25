@@ -9,6 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write  # This ensures the token has write permissions for pushing
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -24,10 +27,3 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./signUp-page
         destination_dir: signUp-page
-
-    - name: Deploy another-page to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./another-page
-        destination_dir: another-page
